@@ -1,4 +1,4 @@
-package com.geosoftware.dto;
+package com.mypackage.dto;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -21,7 +21,10 @@ public class UserDetails {
 
     @Temporal(TemporalType.DATE)
     private Date joinedDate;
-    private String adddress;
+
+
+    @Embedded
+    private Address adddress;
 
     private String description;
 
@@ -47,10 +50,6 @@ public class UserDetails {
         return joinedDate;
     }
 
-    public String getAdddress() {
-        return adddress;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -59,11 +58,15 @@ public class UserDetails {
         this.joinedDate = joinedDate;
     }
 
-    public void setAdddress(String adddress) {
-        this.adddress = adddress;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Address getAdddress() {
+        return adddress;
+    }
+
+    public void setAdddress(Address adddress) {
+        this.adddress = adddress;
     }
 }

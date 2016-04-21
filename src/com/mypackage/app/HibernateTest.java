@@ -1,5 +1,7 @@
-package com.geosoftware.dto;
+package com.mypackage.app;
 
+import com.mypackage.dto.Address;
+import com.mypackage.dto.UserDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -15,9 +17,15 @@ public class HibernateTest {
         UserDetails user2 = new UserDetails();
         //user.setUserID(1);
         user.setUserName("First User");
-        user.setAdddress("address for first user");
+
         user.setJoinedDate(new Date());
         user.setDescription("description for first user");
+
+        Address addr = new Address();
+        addr.setStreet("street 1");
+        addr.setCity("city 1");
+
+        user.setAdddress(addr);
 
         user2.setUserName("User 2");
 
@@ -26,7 +34,7 @@ public class HibernateTest {
 
         session.beginTransaction();
         session.save(user);
-        session.save(user2);
+//        session.save(user2);
         session.getTransaction().commit();
         session.close();
 
