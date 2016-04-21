@@ -32,6 +32,9 @@ public class HibernateTest {
         user.setHomeAdddress(addr);
         user.setOfficeAdddress(addrOffice);
 
+        user.getListOfAddresses().add(addr);
+        user.getListOfAddresses().add(addrOffice);
+
         user2.setUserName("User 2");
 
         SessionFactory sf = new Configuration().configure().buildSessionFactory();

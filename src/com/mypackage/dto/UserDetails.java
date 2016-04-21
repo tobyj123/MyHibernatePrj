@@ -2,6 +2,8 @@ package com.mypackage.dto;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 /**
@@ -34,7 +36,10 @@ public class UserDetails {
     @Embedded
     private Address officeAdddress;
 
+    @ElementCollection
+    private Set<Address> listOfAddresses = new HashSet();
     private String description;
+
 
     @Transient
     private String fieldTemp;         //this field is not saved into table
@@ -84,5 +89,13 @@ public class UserDetails {
 
     public void setOfficeAdddress(Address officeAdddress) {
         this.officeAdddress = officeAdddress;
+    }
+
+    public Set<Address> getListOfAddresses() {
+        return listOfAddresses;
+    }
+
+    public void setListOfAddresses(Set<Address> listOfAddresses) {
+        this.listOfAddresses = listOfAddresses;
     }
 }
