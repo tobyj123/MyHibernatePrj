@@ -22,10 +22,15 @@ public class HibernateTest {
         user.setDescription("description for first user");
 
         Address addr = new Address();
-        addr.setStreet("street 1");
-        addr.setCity("city 1");
+        addr.setStreet("home street 1");
+        addr.setCity("home city 1");
 
-        user.setAdddress(addr);
+        Address addrOffice = new Address();
+        addrOffice.setCity("Office city 1");
+        addrOffice.setState("Office state 1");
+
+        user.setHomeAdddress(addr);
+        user.setOfficeAdddress(addrOffice);
 
         user2.setUserName("User 2");
 
