@@ -1,9 +1,11 @@
 package com.mypackage.dto;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 /**
@@ -40,7 +42,11 @@ public class UserDetails {
     @JoinTable(name = "User_Address",
         joinColumns = @JoinColumn(name = "User_ID")
     )
-    private Set<Address> listOfAddresses = new HashSet();
+    @GenericGenerator(name = "hilo-gen", strategy = "hilo")
+    @CollectionId(columns = {@Column(name = "ADDRESS_ID")},
+            generator = "hilo-gen",
+            type = @Type(type = "long"))
+    private Collection<Address> listOfAddresses = new ArrayList<Address>();
     private String description;
 
 
@@ -94,11 +100,11 @@ public class UserDetails {
         this.officeAdddress = officeAdddress;
     }
 
-    public Set<Address> getListOfAddresses() {
+    public Collection<Address> getListOfAddresses() {
         return listOfAddresses;
     }
 
-    public void setListOfAddresses(Set<Address> listOfAddresses) {
+    public void setListOfAddresses(Collection<Address> listOfAddresses) {
         this.listOfAddresses = listOfAddresses;
     }
 }
