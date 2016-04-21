@@ -37,6 +37,9 @@ public class UserDetails {
     private Address officeAdddress;
 
     @ElementCollection
+    @JoinTable(name = "User_Address",
+        joinColumns = @JoinColumn(name = "User_ID")
+    )
     private Set<Address> listOfAddresses = new HashSet();
     private String description;
 
